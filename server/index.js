@@ -32,7 +32,7 @@ app.post("/create-pdf", async (req, res) => {
 
 app.get('/fetch-pdf', (req, res) => {
     res.setHeader("Content-Type" , "application/octet-stream; charset=utf-8")
-    res.setHeader("Content-Disposition", "attachment; filename=newPDF.pdf")
+    res.setHeader("Content-Disposition", 'attachment; filename="newPDF.pdf"')
     res.sendFile(path.join(__dirname, "newPDF.pdf"));
 })
 

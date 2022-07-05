@@ -18,10 +18,14 @@ export default () => {
      responseType: "blob",
    }).then(() => axios({
        url: "http://127.0.0.1:5000/fetch-pdf",
-       responseType: "blob"
    })).then(data => {
-       const blob = new Blob([data], { type: "application/pdf; charset=utf-8;" })
-      saveAs(blob)
+     const blob = new Blob([data], { type: "octet-stream" })
+     const url = URL.createObjectURL(blob)
+     const a = document.createElement('a')
+     a.href = url
+     a.download = 'new.pdf' 
+     a.click()
+     URL.revokeObjectURL(url)
        })
     
      
