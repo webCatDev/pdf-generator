@@ -10,7 +10,7 @@ export default () => {
   const createDownloadPDF = async () => {
     const { data: id } = await axios({
       method: "post",
-      url: "http://127.0.0.1:5000/create-pdf",
+      url: "https://webcatdev-pdf-generator.herokuapp.com/create-pdf",
       data: {
         fullname: fullnameRef.current.value,
         age: ageRef.current.value,
@@ -19,7 +19,7 @@ export default () => {
       },
     });
     const a = document.createElement("a");
-    a.href = `http://127.0.0.1:5000/fetch-pdf/${id}`;
+    a.href = `https://webcatdev-pdf-generator.herokuapp.com/fetch-pdf/${id}`;
     a.click();
     a.remove();
   };
