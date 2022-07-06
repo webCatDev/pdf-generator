@@ -5,14 +5,16 @@ const app = express();
 const pdf = require("html-pdf");
 const cors = require("cors");
 const { v4: uuid } = require("uuid");
+const generateHTML = require("./generateHTML");
 
 app.use(cors());
+app.use(express.static("/image"))
 app.use(express.json());
 
 app.post("/create-pdf", async (req, res) => {
   const id = uuid();
   pdf
-    .create(`<h1 style="color: red; font-size: 4rem">${req.body.text}</h1>`)
+    .create(generateHTML(req.body))
     .toFile(path.join(__dirname, "pdf", `${id}.pdf`), (err) => {
       if (err) res.send(Promise.reject());
       res.send(id);
